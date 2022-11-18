@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
+    "start": "cd server && node server.js",
+    "serve": "cd server nodemon server.js --ignore client",
+    "build": "cd client && npm run build",
+    "client": "cd client && npm start"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/shanicesauce/contact-cards/issues"
   },
-  "homepage": "https://github.com/shanicesauce/contact-cards#readme"
+  "homepage": "https://github.com/shanicesauce/contact-cards#readme",
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
 }
