@@ -6,7 +6,7 @@ import "../css/index.css";
 import { Tooltip, Toast, Popover } from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { initDb, getDb, postDb, deleteDb, editDb } from "./database";
+import { initDb, postDb, deleteDb, editDb } from "./database";
 import { toggleForm, clearForm } from "./form";
 
 import { fetchCards } from "./cards";
@@ -42,12 +42,16 @@ form.addEventListener("submit", (event) => {
   let profile = document.querySelector('input[type="radio"]:checked').value;
 
   // Calls the editDB function passing in any values from the form element as well as the ID of the contact that we are updating
- 
 
   // Post form data to IndexedDB OR Edit an existing card in IndexedDB
   if (submitBtnToUpdate == false) {
     postDb(name, email, phone, profile);
   } else {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let profile = document.querySelector('input[type="radio"]:checked').value;
+
     editDb(profileId, name, email, phone, profile);
     fetchCards();
     // Toggles the submit button back to POST functionality
@@ -72,7 +76,7 @@ window.deleteCard = (e) => {
 };
 
 window.editCard = (e) => {
-  let profileId = parseInt(e.dataset.id);
+  profileId = parseInt(e.dataset.id);
 
   let editName = e.dataset.name;
   let editEmail = e.dataset.email;
