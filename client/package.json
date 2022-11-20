@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --mode development",
+    "build": "webpack --mode production",
     "dev": "webpack-dev-server",
     "start": "wepack --watch"
   },
@@ -25,6 +25,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
-    "idb": "^7.1.1"
+    "idb": "^7.1.1",
+    "webpack-pwa-manifest": "^4.3.0"
   }
 }
