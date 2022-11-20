@@ -15,6 +15,7 @@ import Logo from "../images/logo.png";
 import Bear from "../images/bear.png";
 import Dog from "../images/dog.png";
 
+
 window.addEventListener("load", function () {
   initDb();
   fetchCards();
@@ -90,3 +91,10 @@ window.editCard = (e) => {
 
   submitBtnToUpdate = true;
 };
+
+if('serviceWorker' in navigator){
+  //use the window to load events to keep page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js');
+  })
+}
