@@ -1,21 +1,21 @@
-import "./form";
-
 //import css files
 import "../css/index.css";
 
+//import bootstrap
 import { Tooltip, Toast, Popover } from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+//import functions
 import { initDb, postDb, deleteDb, editDb } from "./database";
 import { toggleForm, clearForm } from "./form";
-
 import { fetchCards } from "./cards";
 
+//import images
 import Logo from "../images/logo.png";
 import Bear from "../images/bear.png";
 import Dog from "../images/dog.png";
 
-
+//on load functionality
 window.addEventListener("load", function () {
   initDb();
   fetchCards();
@@ -42,8 +42,6 @@ form.addEventListener("submit", (event) => {
   let email = document.getElementById("email").value;
   let profile = document.querySelector('input[type="radio"]:checked').value;
 
-  // Calls the editDB function passing in any values from the form element as well as the ID of the contact that we are updating
-
   // Post form data to IndexedDB OR Edit an existing card in IndexedDB
   if (submitBtnToUpdate == false) {
     postDb(name, email, phone, profile);
@@ -52,6 +50,8 @@ form.addEventListener("submit", (event) => {
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
     let profile = document.querySelector('input[type="radio"]:checked').value;
+
+    // Calls the editDB function passing in any values from the form element as well as the ID of the contact that we are updating
 
     editDb(profileId, name, email, phone, profile);
     fetchCards();
@@ -92,14 +92,20 @@ window.editCard = (e) => {
   submitBtnToUpdate = true;
 };
 
-if('serviceWorker' in navigator){
-  //use the window to load events to keep page load performant
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js');
-  })
-};
+// Checks to see if serviceWorker exists in the navigator and installs our service worker configurations
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("./service-worker.js")
+    .then(function (reg) {
+      console.log("Successfully registered service worker", reg);
+    })
+    .catch(function (err) {
+      console.warn("Error whilst registering service worker", err);
+    });
+}
 
-const installBtn = document.getElementById('installBtn');
+//install btn
+const installBtn = document.getElementById("installBtn");
 
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
@@ -109,9 +115,9 @@ window.addEventListener('beforeinstallprompt', (event) => {
     event.prompt();
     installBtn.setAttribute('disabled', true);
     installBtn.textContent = 'Installed!';
-  })
+  });
 });
 
-window.addEventListener('appinstalled', (event) => {
-  console.log('👍', 'appinstalled', event);
+window.addEventListener("appinstalled", (event) => {
+  console.log("👍", "appinstalled", event);
 });
