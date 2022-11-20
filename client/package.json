@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --mode production",
     "dev": "webpack-dev-server",
+    "build": "webpack --mode production",
     "start": "wepack --watch"
   },
   "keywords": [],
