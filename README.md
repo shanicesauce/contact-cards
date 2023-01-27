@@ -1,6 +1,6 @@
-# JATE
+# Contact Cards
 
-## Conntact Cards
+## Description
     
 The Contact Cards progressive web app will allow users to store contact information and profile pics and add, edit, and delete information as needed in a convenient single-page application that can be used on any device.    
     
